@@ -1,6 +1,9 @@
 import pygame
+
+import controls
 from gun import Gun
 from controls import events_listener
+from pygame.sprite import Group
 
 title = 'убийство эдгаров'
 bg_color = (0, 0, 0)
@@ -12,12 +15,12 @@ def run():
     screen = pygame.display.set_mode(screens)
     pygame.display.set_caption(title)
     gun = Gun(screen)
+    bullets = Group()
     while True:
-        events_listener(gun)
+        events_listener(screen, gun, bullets)
         gun.update_gun()
-        screen.fill(bg_color)
-        gun.rander()
-        pygame.display.flip()
+        bullets.update()
+        controls.update(bg_color, screen, gun, bullets)
 
 
 run()
