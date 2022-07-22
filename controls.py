@@ -22,9 +22,10 @@ def events_listener(screen, gun, bullets):
                 gun.move_left = False
 
 
-def update(bg_color, screen, gun, bullets):
+def update(bg_color, screen, gun, ino , bullets):
     screen.fill(bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     gun.rander()
+    ino.draw()
     pygame.display.flip()
