@@ -2,8 +2,9 @@ import pygame
 
 import controls
 from gun import Gun
-from controls import events_listener
+from controls import events_listener , update_bullets
 from pygame.sprite import Group
+
 
 title = 'убийство эдгаров'
 bg_color = (0, 0, 0)
@@ -19,8 +20,9 @@ def run():
     while True:
         events_listener(screen, gun, bullets)
         gun.update_gun()
-        bullets.update()
         controls.update(bg_color, screen, gun, bullets)
+        update_bullets(bullets)
+
 
 
 run()
