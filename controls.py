@@ -2,7 +2,7 @@ import pygame
 import sys
 from bullet import Bullet
 from ino import Ino
-from app import screen_w, screen_h
+from constants import screen_w, screen_h
 
 
 def events_listener(screen, gun, bullets):
@@ -48,13 +48,24 @@ def update_bullets(bullets):
             bullets.remove(bullet)
 
 
+def update_inos(inos):
+    inos.update()
+
+
 def create_army(screen, inos):
     ino = Ino(screen)
     ino_width = ino.rect.width
     number_ino_x = int((screen_w - 2 * ino_width) / ino_width)
 
-    for n in range(number_ino_x):
-        ino = Ino(screen)
-        ino.x = ino_width + n * ino_width
-        ino.rect.x = ino.x
-        inos.add(ino)
+    ino_height = ino.rect.height
+    number_ino_y = int((screen_h - 100 - 2 * ino_height) / ino_height)
+
+    for r in range(1, number_ino_y):
+        for n in range(1, number_ino_x + 1):
+            ino = Ino(screen)
+            ino.x = n * ino_width
+            ino.rect.x = ino.x
+            ino.y = r * ino_height
+            ino.rect.y = ino.y
+
+            inos.add(ino)
